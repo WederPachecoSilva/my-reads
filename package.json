@@ -1,0 +1,24 @@
+{
+  "name": "my-reads",
+  "version": "0.1.0",
+  "author": "Wéder Pacheco da Silva",
+  "private": true,
+  "dependencies": {
+    "flow-bin": "^0.58.0",
+    "material-ui": "^1.0.0-beta.20",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "enzyme": "^3.1.1",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "flow": "flow"
+  }
+}
