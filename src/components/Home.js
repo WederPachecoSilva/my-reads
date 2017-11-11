@@ -5,7 +5,7 @@ import * as React from 'react';
 type Props = {};
 
 const Home = (props: Props) => (
-    <div>Home</div>
+    <div>Homasdfasdfasfe</div>
 );
 
 export default Home;
