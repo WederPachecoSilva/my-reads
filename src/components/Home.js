@@ -1,10 +1,6 @@
-// @flow
+import React from 'react';
 
-import * as React from 'react';
-
-type Props = {};
-
-const Home = (props: Props) => (
+const Home = () => (
     <div>Homasdfasdfasfe</div>
 );
 
