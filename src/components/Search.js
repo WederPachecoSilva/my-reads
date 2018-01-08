@@ -1,11 +1,35 @@
-// @flow
-
 import * as React from 'react';
+import debounce from 'lodash/debounce';
+import { Input, withStyles } from 'material-ui';
 
-type Props = {};
+import { search } from '../Utils/BooksAPI';
+// import BookCard from './BookCard';
 
-const Search = (props: Props) => (
-    <div>Search</div>
-);
+const styles = {
+    searchBar: {
+        flex: 0.8
+    },
+    container: {
+        display: 'flex'
+    }
+};
 
-export default Search;
+const handleSearch = debounce(e => {
+    const { value } = e.currentTarget;
+    search(value).then(res => console.log(res));
+}, 1000);
+
+const Search = props => {
+    const { classes } = props;
+    return (
+        <div className={classes.container}>
+            <Input
+                className={classes.searchBar}
+                placeholder="Search for Book"
+                onChange={handleSearch}
+            />
+        </div>
+    );
+};
+
+export default withStyles(styles)(Search);
