@@ -3,32 +3,22 @@ import { Paper, withStyles, Input, FormControl, Button } from 'material-ui';
 
 const styles = {
     container: {
-        display: 'flex'
+        display: 'flex',
     },
     input: {
         // Completar
-    }
+    },
 };
 
 class CommentBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputValue: ''
+            inputValue: '',
         };
-        this.onChangeInput.bind(this);
+        this.onInputChange.bind(this);
         this.saveComment.bind(this);
     }
-
-    /*
-        To wrap custom components in order to enhance material-ui
-        components, two steps needs to be made to improve performance:
-        1- Forward the properties(line 37).
-        2- Tag the custom component with a muiName static property passing
-        the type of material-ui component inside it.   
-        https://material-ui-next.com/guides/composition/
-    */
-    static muiName = 'Paper';
 
     saveComment(e) {
         e.preventDefault();
@@ -36,7 +26,7 @@ class CommentBox extends React.Component {
         localStorage.setItem(this.props.title, e.currentTarget.value);
     }
 
-    onChangeInput(e) {
+    onInputChange(e) {
         this.setState({ inputValue: e.currentTarget.value });
     }
 
@@ -48,7 +38,7 @@ class CommentBox extends React.Component {
                 <FormControl>
                     <Input
                         className={input}
-                        onChange={this.onChangeInput}
+                        onChange={this.onInputChange}
                         multiline={true}
                         fullWidth={true}
                     />
