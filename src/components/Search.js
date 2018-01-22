@@ -3,6 +3,7 @@ import debounce from 'lodash/debounce';
 import { Input, withStyles } from 'material-ui';
 
 import { search } from '../utils/BooksAPI';
+import Header from './Header';
 // import BookCard from './BookCard';
 
 const styles = {
@@ -23,6 +24,7 @@ const Search = props => {
     const { classes } = props;
     return (
         <div className={classes.container}>
+            <Header />
             <Input
                 className={classes.searchBar}
                 placeholder="Search for Book"

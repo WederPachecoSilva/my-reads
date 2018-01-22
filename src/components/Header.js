@@ -4,8 +4,10 @@ import AppBar from 'material-ui/AppBar/AppBar';
 import Toolbar from 'material-ui/Toolbar/Toolbar';
 import withStyles from 'material-ui/styles/withStyles';
 import Button from 'material-ui/Button/Button';
-import AddIcon from 'material-ui-icons/Add';
+import SearchIcon from 'material-ui-icons/Search';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import If from './helpers/If';
 
 const styles = {
     root: {
@@ -28,10 +30,10 @@ const styles = {
 };
 
 // const AddRoute = () => (
-//     <Link to={}
+//     <Link to='/search'></Link>
 // )
 
-const Header = ({ classes }) => {
+const Header = ({ classes, match }) => {
     const { root, text, icon, bar } = classes;
     return (
         <div className={root}>
@@ -40,18 +42,19 @@ const Header = ({ classes }) => {
                     <Typography color="inherit" type="title" className={text}>
                         My-Reads
                     </Typography>
-                    <Button
-                        fab
-                        color="inherit"
-                        className={icon}
-                        onClick={() => alert('ola')}
-                    >
-                        <AddIcon />
-                    </Button>
+                    <If condition={match.url === '/'}>
+                        <Button fab color="inherit" className={icon}>
+                            <Link to="/search">
+                                <SearchIcon />
+                            </Link>
+                        </Button>
+                    </If>
                 </Toolbar>
             </AppBar>
         </div>
     );
 };
 
-export default withStyles(styles)(Header);
+// @ts-ignore
+const HeaderWithRouter = withRouter(Header);
+export default withStyles(styles)(HeaderWithRouter);

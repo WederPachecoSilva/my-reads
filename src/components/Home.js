@@ -1,7 +1,10 @@
 import React from 'react';
 import Header from './Header';
 
-// @ts-ignore
-const Home = () => <div>home</div>;
+const Home = () => (
+    <div>
+        <Header />
+    </div>
+);
 
 export default Home;

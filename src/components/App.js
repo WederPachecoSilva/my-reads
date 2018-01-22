@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
-import Header from './Header';
 
 const LoadableHome = Loadable({
     loader: () => import('./Home'),
@@ -15,7 +14,6 @@ const LoadableSearch = Loadable({
 
 const App = () => (
     <div>
-        <Header />
         <Router>
             <div>
                 <Route exact path="/" component={LoadableHome} />
