@@ -2,14 +2,18 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
+import Loading from './helpers/Loading';
+
 const LoadableHome = Loadable({
     loader: () => import('./Home'),
-    loading: () => <div>Loading...</div>,
+    // @ts-ignore
+    loading: () => <Loading />,
 });
 
 const LoadableSearch = Loadable({
     loader: () => import('./Search'),
-    loading: () => <div>Loading...</div>,
+    // @ts-ignore
+    loading: () => <Loading />,
 });
 
 const App = () => (

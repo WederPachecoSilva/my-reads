@@ -19,7 +19,7 @@ const styles = {
         justifyContent: 'space-between',
     },
     text: {
-        marginLeft: 25,
+        marginLeft: '10%',
     },
     icon: {
         marginRight: 25,

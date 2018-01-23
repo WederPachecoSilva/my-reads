@@ -6,35 +6,30 @@ import {
     Typography,
     withStyles,
     CardActions,
-    Button
+    Button,
 } from 'material-ui';
-
-import If from './helpers/If';
-import CommentBox from './CommentBox';
 
 const styles = {
     card: {
-        maxWidth: 345
+        maxWidth: 370,
     },
     media: {
-        height: 200
-    }
+        height: 400,
+    },
+    container: {
+        margin: 10,
+    },
 };
 
 class BookCard extends React.Component {
     state = { enableComment: false };
 
     render() {
-        const {
-            classes,
-            imageUrl,
-            title,
-            author,
-            status,
-            description
-        } = this.props;
+        // @ts-ignore
+        const { classes, imageUrl, title, authors } = this.props;
+
         return (
-            <div>
+            <div className={classes.container}>
                 <Card className={classes.card}>
                     <CardMedia
                         className={classes.media}
@@ -45,24 +40,25 @@ class BookCard extends React.Component {
                         <Typography type="headline" component="h2">
                             {title}
                         </Typography>
-                        <Typography component="p">{description}</Typography>
+                        {authors &&
+                            authors.map((author, key) => (
+                                <Typography key={key} component="p">
+                                    {author}
+                                </Typography>
+                            ))}
                     </CardContent>
                     <CardActions>
                         <Button
-                            onClick={() =>
-                                this.setState({ enableComment: true })
-                            }
+                            onClick={() => {
+                                this.setState({ enableComment: true });
+                                console.log(authors);
+                            }}
                             dense
                             color="primary"
                         >
                             Create comment
                         </Button>
                     </CardActions>
-                    <If condition={localStorage.getItem(title)}>
-                        <CardContent>
-                            <CommentBox title={title} />
-                        </CardContent>
-                    </If>
                 </Card>
             </div>
         );
@@ -73,5 +69,5 @@ class BookCard extends React.Component {
 export default withStyles(styles)(BookCard);
 
 /*
-    Falta completar o componente
-*/
+            Falta completar o componente
+            */
