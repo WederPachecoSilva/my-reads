@@ -10,16 +10,9 @@ const styles = {
 };
 
 const BookCardList = ({ books, classes }) => (
-    <div className={classes.container}>
-        {books.map(({ title, authors, id, imageUrl }) => (
-            <BookCard
-                key={id}
-                title={title}
-                authors={authors}
-                imageUrl={imageUrl}
-            />
-        ))}
-    </div>
+    <React.Fragment>
+        {books.map(book => <BookCard {...book} key={book.id} />)}
+    </React.Fragment>
 );
 
 export default withStyles(styles)(BookCardList);

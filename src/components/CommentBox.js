@@ -11,24 +11,19 @@ const styles = {
 };
 
 class CommentBox extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            inputValue: '',
-        };
-        this.onInputChange.bind(this);
-        this.saveComment.bind(this);
-    }
+    state = {
+        inputValue: '',
+    };
 
-    saveComment(e) {
+    saveComment = e => {
         e.preventDefault();
         // @ts-ignore
         localStorage.setItem(this.props.title, e.currentTarget.value);
-    }
+    };
 
-    onInputChange(e) {
+    onInputChange = e => {
         this.setState({ inputValue: e.currentTarget.value });
-    }
+    };
 
     render() {
         // @ts-ignore
@@ -51,6 +46,7 @@ class CommentBox extends React.Component {
     }
 }
 
+// @ts-ignore
 export default withStyles(styles)(CommentBox);
 
 /*

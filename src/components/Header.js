@@ -6,8 +6,9 @@ import withStyles from 'material-ui/styles/withStyles';
 import Button from 'material-ui/Button/Button';
 import SearchIcon from 'material-ui-icons/Search';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+
 import If from './helpers/If';
+import { withRouter } from 'react-router';
 
 const styles = {
     root: {
@@ -29,10 +30,6 @@ const styles = {
     },
 };
 
-// const AddRoute = () => (
-//     <Link to='/search'></Link>
-// )
-
 const Header = ({ classes, match }) => {
     const { root, text, icon, bar } = classes;
     return (
@@ -42,7 +39,7 @@ const Header = ({ classes, match }) => {
                     <Typography color="inherit" type="title" className={text}>
                         My-Reads
                     </Typography>
-                    <If condition={match.url === '/'}>
+                    <If condition={match.url === '/' && match.isExact}>
                         <Button fab color="inherit" className={icon}>
                             <Link to="/search">
                                 <SearchIcon />
@@ -55,6 +52,4 @@ const Header = ({ classes, match }) => {
     );
 };
 
-// @ts-ignore
-const HeaderWithRouter = withRouter(Header);
-export default withStyles(styles)(HeaderWithRouter);
+export default withStyles(styles)(withRouter(Header));

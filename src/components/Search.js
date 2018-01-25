@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-// import debounce from 'lodash/debounce';
 import { Input, withStyles } from 'material-ui';
 
 import { search } from '../utils/BooksAPI';
-import Header from './Header';
 import { center } from '../utils/cssGlobalVariables';
-// import BookCard from './BookCard';
 import PropTypes from 'prop-types';
 import BookCardList from './BookCardList';
-// import If from './helpers/If';
+import If from './helpers/If';
 
 const styles = {
     searchBar: {
@@ -22,15 +19,23 @@ const styles = {
 };
 
 class Search extends Component {
+    static propTypes = {
+        classes: PropTypes.shape({
+            container: PropTypes.string.isRequired,
+            searchBar: PropTypes.string.isRequired,
+        }),
+    };
+
     state = {
         books: [],
     };
 
     handleFilter = async e => {
+        const { value } = e.target;
+        let books = [];
         try {
-            const { value } = e.target;
             const result = await search(value);
-            const books = result.map(book => {
+            books = result.map(book => {
                 const { title, authors, id, imageLinks } = book;
                 return {
                     title,
@@ -39,8 +44,12 @@ class Search extends Component {
                     imageUrl: imageLinks.thumbnail,
                 };
             });
-            this.setState({ books });
-        } catch (error) {}
+            if (books.length > 0) {
+                this.setState({ books });
+            }
+        } catch (error) {
+            this.setState({ books: [] });
+        }
     };
 
     render() {
@@ -50,24 +59,18 @@ class Search extends Component {
         const { classes } = this.props;
         return (
             <div className={classes.container}>
-                <Header />
                 <Input
                     className={classes.searchBar}
                     placeholder="Search for Book"
-                    onKeyUp={this.handleFilter}
+                    onChange={this.handleFilter}
                 />
-                {books.length > 0 && <BookCardList books={books} />}
+                <If condition={books && books.length > 0}>
+                    <BookCardList books={books} />
+                </If>
             </div>
         );
     }
 }
-
-Search.propTypes = {
-    classes: PropTypes.shape({
-        container: PropTypes.string.isRequired,
-        searchBar: PropTypes.string.isRequired,
-    }),
-};
 
 // @ts-ignore
 export default withStyles(styles)(Search);

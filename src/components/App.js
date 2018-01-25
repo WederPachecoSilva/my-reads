@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 import Loading from './helpers/Loading';
+import Header from './Header';
 
 const LoadableHome = Loadable({
     loader: () => import('./Home'),
@@ -17,14 +18,15 @@ const LoadableSearch = Loadable({
 });
 
 const App = () => (
-    <div>
-        <Router>
-            <div>
+    <Router>
+        <React.Fragment>
+            <Header />
+            <Switch>
                 <Route exact path="/" component={LoadableHome} />
                 <Route path="/search" component={LoadableSearch} />
-            </div>
-        </Router>
-    </div>
+            </Switch>
+        </React.Fragment>
+    </Router>
 );
 
 export default App;
