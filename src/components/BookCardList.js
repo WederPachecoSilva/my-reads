@@ -1,18 +1,17 @@
 import React from 'react';
 import BookCard from './BookCard';
-import withStyles from 'material-ui/styles/withStyles';
-
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'row',
-    },
-};
+import Grid from 'material-ui/Grid/Grid';
 
 const BookCardList = ({ books, classes }) => (
-    <React.Fragment>
-        {books.map(book => <BookCard {...book} key={book.id} />)}
-    </React.Fragment>
+    <Grid container spacing={8}>
+        {books.map(book => {
+            return (
+                <Grid item md={3} sm={6} xs={12} key={book.id}>
+                    <BookCard {...book} />
+                </Grid>
+            );
+        })}
+    </Grid>
 );
 
-export default withStyles(styles)(BookCardList);
+export default BookCardList;

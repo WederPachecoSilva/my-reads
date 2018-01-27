@@ -1,40 +1,37 @@
 import React, { Component } from 'react';
-import { Input, withStyles } from 'material-ui';
+import withStyles from 'material-ui/styles/withStyles';
+import PropTypes from 'prop-types';
+import debounce from 'lodash/debounce';
 
 import { search } from '../utils/BooksAPI';
-import { center } from '../utils/cssGlobalVariables';
-import PropTypes from 'prop-types';
 import BookCardList from './BookCardList';
 import If from './helpers/If';
+import TextField from 'material-ui/TextField/TextField';
+import Grid from 'material-ui/Grid/Grid';
 
 const styles = {
     searchBar: {
-        width: '80%',
-        ...center,
-    },
-    container: {
         display: 'flex',
-        flexDirection: 'column',
+        flex: 1,
     },
 };
 
 class Search extends Component {
     static propTypes = {
         classes: PropTypes.shape({
-            container: PropTypes.string.isRequired,
             searchBar: PropTypes.string.isRequired,
         }),
     };
 
     state = {
         books: [],
+        input: '',
     };
 
-    handleFilter = async e => {
-        const { value } = e.target;
+    doSearch = debounce(async term => {
         let books = [];
         try {
-            const result = await search(value);
+            const result = await search(term);
             books = result.map(book => {
                 const { title, authors, id, imageLinks } = book;
                 return {
@@ -50,6 +47,11 @@ class Search extends Component {
         } catch (error) {
             this.setState({ books: [] });
         }
+    }, 300);
+
+    handleSearch = e => {
+        const { value } = e.target;
+        this.doSearch(value);
     };
 
     render() {
@@ -57,17 +59,23 @@ class Search extends Component {
         const { books } = this.state;
         // @ts-ignore
         const { classes } = this.props;
+
         return (
-            <div className={classes.container}>
-                <Input
-                    className={classes.searchBar}
-                    placeholder="Search for Book"
-                    onChange={this.handleFilter}
-                />
+            <Grid container direction="column">
+                <Grid item md={6} sm={8} xs={11}>
+                    <TextField
+                        className={classes.searchBar}
+                        label="Book"
+                        helperText="Search for a book"
+                        onChange={this.handleSearch}
+                        margin="dense"
+                        required
+                    />
+                </Grid>
                 <If condition={books && books.length > 0}>
                     <BookCardList books={books} />
                 </If>
-            </div>
+            </Grid>
         );
     }
 }

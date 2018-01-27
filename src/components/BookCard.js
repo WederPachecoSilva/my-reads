@@ -10,14 +10,12 @@ import {
 } from 'material-ui';
 
 const styles = {
+    container: { margin: 30 },
     card: {
-        maxWidth: 370,
+        maxWidth: 330,
     },
     media: {
         height: 400,
-    },
-    container: {
-        margin: 10,
     },
 };
 
