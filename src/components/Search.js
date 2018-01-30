@@ -31,9 +31,15 @@ class Search extends Component {
     doSearch = debounce(async term => {
         let books = [];
         try {
+            if (term.length === 0) {
+                this.setState({ books: [] });
+                return;
+            }
+
             const result = await search(term);
             books = result.map(book => {
                 const { title, authors, id, imageLinks } = book;
+
                 return {
                     title,
                     authors,
