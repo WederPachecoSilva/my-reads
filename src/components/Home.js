@@ -1,5 +1,6 @@
 import React from 'react';
+import Button from './Button';
 
-const Home = () => <div>Home</div>;
+const Home = () => <Button>CHANGE</Button>;
 
 export default Home;

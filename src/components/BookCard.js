@@ -9,7 +9,7 @@ import {
     Button,
 } from 'material-ui';
 import { ArrowDropDownCircle } from 'material-ui-icons';
-import ChangeGroupModal from './ChangeGroupModal';
+import ChangeDrawerModal from './ChangeDrawerModal';
 
 const styles = {
     container: {
@@ -79,7 +79,7 @@ class BookCard extends React.Component {
                                 className={classes.arrowIcon}
                             />
                         </Button>
-                        <ChangeGroupModal
+                        <ChangeDrawerModal
                             isOpen={this.state.isModalOpen}
                             closeModal={this.closeModal}
                         />
@@ -92,7 +92,3 @@ class BookCard extends React.Component {
 
 // @ts-ignore
 export default withStyles(styles)(BookCard);
-
-/*
-            Falta completar o componente
-            */
