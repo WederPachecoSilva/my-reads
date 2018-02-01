@@ -1,7 +1,8 @@
 import React from 'react';
 import { Modal, Grid, Button, withStyles } from 'material-ui';
 import BookSelection from './BookSelection';
-import { update } from '../../utils/BooksAPI';
+import { update, getAll } from '../../utils/BooksAPI';
+import Error from '../ErrorHandling/Error';
 
 const styles = {
     modalGrid: {
@@ -17,26 +18,33 @@ const styles = {
 class ChangeDrawerModal extends React.Component {
     state = {
         drawer: 'none',
+        error: false,
     };
 
     changeSelectedDrawer = event => {
         this.setState({ drawer: event.target.value });
     };
+    changeDrawer = async () => {
+        try {
+            const res = await getAll();
+            console.log(res);
+            // @ts-ignore
+            await update(this.props.book, this.state.drawer);
 
-    changeDrawer = () => {
-        // console.log(this.props.book, this.state.drawer);
-        // @ts-ignore
-        update(this.props.book, this.state.drawer)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
-
-        // @ts-ignore
-        this.props.closeModal();
+            // @ts-ignore
+            this.props.closeModal();
+        } catch (error) {
+            this.setState({ error: true });
+        }
     };
 
     render() {
         // @ts-ignore
         const { isOpen, classes } = this.props;
+        if (this.state.error) {
+            return <Error />;
+        }
+
         return (
             <Modal
                 aria-labelledby="simple-modal-title"
