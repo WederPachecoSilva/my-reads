@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import withStyles from 'material-ui/styles/withStyles';
+import TextField from 'material-ui/TextField/TextField';
+import Grid from 'material-ui/Grid/Grid';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 
 import { search } from '../utils/BooksAPI';
 import BookCardList from './BookCardList';
 import If from './helpers/If';
-import TextField from 'material-ui/TextField/TextField';
-import Grid from 'material-ui/Grid/Grid';
+import Error from './ErrorHandling/Error';
 
 const styles = {
     searchBar: {
@@ -26,6 +27,7 @@ class Search extends Component {
     state = {
         books: [],
         input: '',
+        hasError: false,
     };
 
     doDebouncedSearch = debounce(async term => {
@@ -51,7 +53,7 @@ class Search extends Component {
                 this.setState({ books });
             }
         } catch (error) {
-            this.setState({ books: [] });
+            this.setState({ books: [], hasError: true });
         }
     }, 300);
 
@@ -65,6 +67,10 @@ class Search extends Component {
         const { books } = this.state;
         // @ts-ignore
         const { classes } = this.props;
+
+        if (this.state.hasError) {
+            return <Error />;
+        }
 
         return (
             <Grid container direction="column">
