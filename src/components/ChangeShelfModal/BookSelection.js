@@ -19,9 +19,8 @@ const styles = theme => ({
 });
 
 const radioOptions = [
-    { label: 'None', value: 'none' },
-    { label: 'Want to Read', value: 'want' },
-    { label: 'Currently Reading', value: 'reading' },
+    { label: 'Want to Read', value: 'wantToRead' },
+    { label: 'Currently Reading', value: 'currentlyReading' },
     { label: 'Read', value: 'read' },
 ];
 

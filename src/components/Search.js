@@ -28,7 +28,7 @@ class Search extends Component {
         input: '',
     };
 
-    doSearch = debounce(async term => {
+    doDebouncedSearch = debounce(async term => {
         let books = [];
         try {
             if (term.length === 0) {
@@ -39,12 +39,12 @@ class Search extends Component {
             const result = await search(term);
             books = result.map(book => {
                 const { title, authors, id, imageLinks } = book;
-
                 return {
                     title,
                     authors,
                     id,
                     imageUrl: imageLinks.thumbnail,
+                    book,
                 };
             });
             if (books.length > 0) {
@@ -57,7 +57,7 @@ class Search extends Component {
 
     handleSearch = e => {
         const { value } = e.target;
-        this.doSearch(value);
+        this.doDebouncedSearch(value);
     };
 
     render() {

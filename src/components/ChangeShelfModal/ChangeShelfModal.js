@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Grid, Button, withStyles } from 'material-ui';
 import BookSelection from './BookSelection';
+import { update } from '../../utils/BooksAPI';
 
 const styles = {
     modalGrid: {
@@ -23,6 +24,12 @@ class ChangeDrawerModal extends React.Component {
     };
 
     changeDrawer = () => {
+        // console.log(this.props.book, this.state.drawer);
+        // @ts-ignore
+        update(this.props.book, this.state.drawer)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+
         // @ts-ignore
         this.props.closeModal();
     };
