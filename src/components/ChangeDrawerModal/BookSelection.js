@@ -39,8 +39,12 @@ const RadioButtonsGroup = props => {
                     value={drawer}
                     onChange={changeSelectedDrawer}
                 >
-                    {radioOptions.map(option => (
-                        <FormControlLabel control={<Radio />} {...option} />
+                    {radioOptions.map((option, key) => (
+                        <FormControlLabel
+                            control={<Radio />}
+                            key={key}
+                            {...option}
+                        />
                     ))}
                 </RadioGroup>
             </FormControl>

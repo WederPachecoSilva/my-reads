@@ -9,7 +9,7 @@ import {
     Button,
 } from 'material-ui';
 import { ArrowDropDownCircle } from 'material-ui-icons';
-import Modal from './ChangeDrawerModal/Modal';
+import ChangeDrawerModal from './ChangeDrawerModal/ChangeDrawerModal';
 
 const styles = {
     container: {
@@ -81,7 +81,7 @@ class BookCard extends React.Component {
                                 className={classes.arrowIcon}
                             />
                         </Button>
-                        <Modal
+                        <ChangeDrawerModal
                             isOpen={this.state.isModalOpen}
                             closeModal={this.closeModal}
                         />
