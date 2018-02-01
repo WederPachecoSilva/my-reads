@@ -52,4 +52,5 @@ const Header = ({ classes, match }) => {
     );
 };
 
+// @ts-ignore
 export default withStyles(styles)(withRouter(Header));

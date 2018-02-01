@@ -9,7 +9,7 @@ import {
     Button,
 } from 'material-ui';
 import { ArrowDropDownCircle } from 'material-ui-icons';
-import ChangeDrawerModal from './ChangeDrawerModal';
+import Modal from './ChangeDrawerModal/Modal';
 
 const styles = {
     container: {
@@ -40,6 +40,10 @@ class BookCard extends React.Component {
         this.setState({ isModalOpen: true });
     };
 
+    openComment = () => {
+        this.setState({ enableComment: true });
+    };
+
     render() {
         // @ts-ignore
         const { classes, imageUrl, title, authors } = this.props;
@@ -65,9 +69,7 @@ class BookCard extends React.Component {
                     </CardContent>
                     <CardActions>
                         <Button
-                            onClick={() => {
-                                this.setState({ enableComment: true });
-                            }}
+                            onClick={this.openComment}
                             dense
                             color="primary"
                         >
@@ -79,7 +81,7 @@ class BookCard extends React.Component {
                                 className={classes.arrowIcon}
                             />
                         </Button>
-                        <ChangeDrawerModal
+                        <Modal
                             isOpen={this.state.isModalOpen}
                             closeModal={this.closeModal}
                         />
