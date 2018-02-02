@@ -6,13 +6,13 @@ import Loading from './helpers/Loading';
 import Header from './Header';
 
 const LoadableHome = Loadable({
-    loader: () => import('./Home'),
+    loader: () => import('./Routes/HomeWithErrorBoundary'),
     // @ts-ignore
     loading: () => <Loading />,
 });
 
 const LoadableSearch = Loadable({
-    loader: () => import('./Search'),
+    loader: () => import('./Routes/SearchWithErrorBoundary'),
     // @ts-ignore
     loading: () => <Loading />,
 });
