@@ -8,7 +8,6 @@ import {
     CardActions,
     Button,
 } from 'material-ui';
-import { ArrowDropDownCircle } from 'material-ui-icons';
 import ChangeShelfModal from './ChangeShelfModal/ChangeShelfModal';
 
 const styles = {
@@ -46,7 +45,14 @@ class BookCard extends React.Component {
 
     render() {
         // @ts-ignore
-        const { classes, imageUrl, title, authors, book } = this.props;
+        const {
+            classes,
+            imageUrl,
+            title,
+            authors,
+            book,
+            updateShelf,
+        } = this.props;
 
         return (
             <div className={classes.container}>
@@ -76,15 +82,13 @@ class BookCard extends React.Component {
                             Create comment
                         </Button>
                         <Button dense color="primary" onClick={this.openModal}>
-                            Select a Group
-                            <ArrowDropDownCircle
-                                className={classes.arrowIcon}
-                            />
+                            Select a Shelf
                         </Button>
                         <ChangeShelfModal
                             isOpen={this.state.isModalOpen}
                             closeModal={this.closeModal}
                             book={book}
+                            updateShelf={updateShelf}
                         />
                     </CardActions>
                 </Card>

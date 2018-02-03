@@ -1,7 +1,12 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
+import {
+    withStyles,
+    FormLabel,
+    FormControl,
+    FormControlLabel,
+    Radio,
+    RadioGroup,
+} from 'material-ui';
 
 const styles = theme => ({
     root: {

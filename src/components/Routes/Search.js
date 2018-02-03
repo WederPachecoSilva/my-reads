@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import withStyles from 'material-ui/styles/withStyles';
-import TextField from 'material-ui/TextField/TextField';
-import Grid from 'material-ui/Grid/Grid';
+import { withStyles, TextField, Grid } from 'material-ui';
 import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 
-import { search } from '../utils/BooksAPI';
-import BookCardList from './BookCardList';
-import If from './helpers/If';
-import Error from './ErrorHandling/Error';
+import { search } from '../../utils/BooksAPI';
+import BookCardList from './../BookCardList';
+import If from './../helpers/If';
+import Error from './../ErrorHandling/Error';
 
 const styles = {
     searchBar: {
@@ -26,7 +24,6 @@ class Search extends Component {
 
     state = {
         books: [],
-        input: '',
         hasError: false,
     };
 
