@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 import Loading from './helpers/Loading';
-import Header from './Header';
+import Header from './Header/Header';
 
 const LoadableHome = Loadable({
     loader: () => import('./Routes/HomeWithErrorBoundary'),

@@ -1,10 +1,10 @@
 import React from 'react';
-import Search from '../Search';
+import Home from './Home';
 import ErrorBoundary from '../ErrorHandling/ErrorBoundary';
 
 const HomeWithErrorBoundary = () => (
     <ErrorBoundary>
-        <Search />
+        <Home />
     </ErrorBoundary>
 );
 
