@@ -23,6 +23,14 @@ const LoadableNotMatch = Loadable({
     loading: () => <Loading />,
 });
 
+/**
+ * Loadable from react-loadable module is being used to
+ * get code splitting, which is a tecnique used to avoid
+ * that the user needs to import all the app at once.
+ * Using code splitting the user only downloads the code
+ * as it is demanded.
+ */
+
 const App = () => (
     <Router>
         <React.Fragment>

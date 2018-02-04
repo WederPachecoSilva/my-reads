@@ -31,7 +31,7 @@ const radioOptions = [
 ];
 
 const BookSelection = props => {
-    const { classes, changeSelectedDrawer, drawer } = props;
+    const { classes, changeSelectedShelf, drawer } = props;
 
     return (
         <div className={classes.root}>
@@ -42,7 +42,7 @@ const BookSelection = props => {
                     name="drawer"
                     className={classes.group}
                     value={drawer}
-                    onChange={changeSelectedDrawer}
+                    onChange={changeSelectedShelf}
                 >
                     {radioOptions.map((option, key) => (
                         <FormControlLabel
@@ -63,9 +63,8 @@ BookSelection.propTypes = {
         formControl: PropTypes.string.isRequired,
         group: PropTypes.string.isRequired,
     }),
-    changeSelectedDrawer: PropTypes.func.isRequired,
+    changeSelectedDrawer: PropTypes.func,
     drawer: PropTypes.string.isRequired,
 };
 
-// @ts-ignore
 export default withStyles(styles)(BookSelection);

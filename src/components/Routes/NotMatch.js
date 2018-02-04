@@ -1,10 +1,3 @@
-/**
- *  This component will render with the user tries to search for
- *  an URL that doesn't match any valid one.
- *  This is a simple 404 handler.
- *  In case of production it needs to get a better looking
- */
-
 import React from 'react';
 
 const style = {
@@ -15,6 +8,12 @@ const style = {
     },
 };
 
+/**
+ *  This component will render with the user tries to search for
+ *  an URL that doesn't match any valid one.
+ *  This is a simple 404 handler.
+ *  In case of production it needs to get a better looking
+ */
 const NotMatch = () => (
     <div style={style.container}>
         <p>Something went wrong!</p>

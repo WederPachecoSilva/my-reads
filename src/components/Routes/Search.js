@@ -28,6 +28,15 @@ class Search extends Component {
         hasError: false,
     };
 
+    /**
+     * This method returns a debounced function that
+     * when invoked will only execute after 300 miliseconds
+     * of its call.
+     * The debounced function receives a term to be searched,
+     * do some checks and treats if there is something wrong.
+     * If everything is ok it search for all books and then store
+     * them in this.state.books
+     */
     debouncedSearch = debounce(async term => {
         let books = [];
         try {
@@ -69,9 +78,8 @@ class Search extends Component {
     };
 
     render() {
-        // @ts-ignore
         const { books } = this.state;
-        // @ts-ignore
+
         const { classes } = this.props;
 
         if (this.state.hasError) {
@@ -98,5 +106,4 @@ class Search extends Component {
     }
 }
 
-// @ts-ignore
 export default withErrorBoundary(withStyles(styles)(Search));

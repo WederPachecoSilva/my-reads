@@ -128,5 +128,4 @@ class BookCard extends React.Component {
     }
 }
 
-// @ts-ignore
 export default withStyles(styles)(BookCard);

@@ -16,7 +16,13 @@ const styles = {
 class BookCardListByShelf extends React.Component {
     state = { wantToRead: [], read: [], currentlyReading: [] };
 
-    // Big O(n)
+    /**
+     * It gets a list of all books that has a specific shelf,
+     * loops through it and split into three different
+     * lists (wantToRead, read and currentlyReading).
+     * Then it stores all three lists in this.state
+     * @returns {Promise} - All async functions returns a promise
+     */
     getBooksAndSplitByShelf = async () => {
         const books = await getAll();
 

@@ -33,23 +33,24 @@ class ChangeDrawerModal extends React.Component {
     };
 
     state = {
-        // @ts-ignore
         shelf: this.props.book.shelf || 'none',
         error: false,
     };
 
-    changeSelectedDrawer = event => {
+    changeSelectedShelf = event => {
         this.setState({ shelf: event.target.value });
     };
 
-    changeDrawer = async () => {
-        // @ts-ignore
+    changeShelf = async () => {
         const { book, updateShelf, closeModal } = this.props;
         try {
             await update(book, this.state.shelf);
 
-            // This prop only comes from /home
-            // It is used to update instantly if a book changes its shelf
+            /**
+             * This prop only comes from /home
+             * It is used to update instantly
+             * if a book changes its shelf
+             */
             if (updateShelf) {
                 updateShelf();
             }
@@ -62,9 +63,9 @@ class ChangeDrawerModal extends React.Component {
     };
 
     render() {
-        // @ts-ignore
         const { isOpen, classes, closeModal } = this.props;
-        if (this.state.error) {
+        const { error, shelf } = this.state;
+        if (error) {
             return <Error />;
         }
 
@@ -77,12 +78,12 @@ class ChangeDrawerModal extends React.Component {
             >
                 <Grid item xs={9} sm={4} md={2} className={classes.modalGrid}>
                     <BookSelection
-                        drawer={this.state.shelf}
-                        changeSelectedDrawer={this.changeSelectedDrawer}
+                        drawer={shelf}
+                        changeSelectedShelf={this.changeSelectedShelf}
                     />
                     <Grid container justify="space-around">
                         <Button onClick={closeModal}>Cancel</Button>
-                        <Button onClick={this.changeDrawer}>Change</Button>
+                        <Button onClick={this.changeShelf}>Change</Button>
                     </Grid>
                 </Grid>
             </Modal>
@@ -90,5 +91,4 @@ class ChangeDrawerModal extends React.Component {
     }
 }
 
-// @ts-ignore
 export default withStyles(styles)(ChangeDrawerModal);
