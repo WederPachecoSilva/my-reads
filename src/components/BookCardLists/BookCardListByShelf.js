@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { getAll } from '../utils/BooksAPI';
+import { getAll } from '../../utils/BooksAPI';
 import BookCardList from './BookCardList';
-import If from './helpers/If';
+import If from '.././helpers/If';
 
 class BookCardListByShelf extends React.Component {
     state = { wantToRead: [], read: [], currentlyReading: [] };
