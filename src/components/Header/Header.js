@@ -10,7 +10,7 @@ import {
 import SearchIcon from 'material-ui-icons/Search';
 import { Link } from 'react-router-dom';
 
-import If from './../helpers/If';
+import If from './../Helpers/If';
 import { withRouter } from 'react-router';
 
 const styles = {

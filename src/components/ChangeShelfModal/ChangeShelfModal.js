@@ -36,6 +36,7 @@ class ChangeDrawerModal extends React.Component {
             await update(book, this.state.shelf);
 
             // This prop only comes from /home
+            // It is used to update instantly if a book changes its shelf
             if (updateShelf) {
                 updateShelf();
             }

@@ -8,7 +8,7 @@ import {
     CardActions,
     Button,
 } from 'material-ui';
-import ChangeShelfModal from './ChangeShelfModal/ChangeShelfModal';
+import ChangeShelfModal from '.././ChangeShelfModal/ChangeShelfModal';
 import StarRating from './StarRating';
 
 const styles = {

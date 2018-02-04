@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
-import Loading from './helpers/Loading';
+import Loading from './Helpers/Loading';
 import Header from './Header/Header';
 
 const LoadableHome = Loadable({

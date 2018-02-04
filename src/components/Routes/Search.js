@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import debounce from 'lodash/debounce';
 
 import { search } from '../../utils/BooksAPI';
-import BookCardList from './../BookCardList';
-import If from './../helpers/If';
+import BookCardList from '../BookCardLists/BookCardList';
+import If from './../Helpers/If';
 import Error from './../ErrorHandling/Error';
 import withErrorBoundary from '../ErrorHandling/withErrorBoundary';
 
