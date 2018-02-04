@@ -66,7 +66,7 @@ class ChangeDrawerModal extends React.Component {
                         drawer={this.state.shelf}
                         changeSelectedDrawer={this.changeSelectedDrawer}
                     />
-                    <Grid container>
+                    <Grid container justify="space-around">
                         <Button onClick={closeModal}>Cancel</Button>
                         <Button onClick={this.changeDrawer}>Change</Button>
                     </Grid>
