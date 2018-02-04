@@ -6,9 +6,9 @@ const BookCardList = props => {
     const { books } = props;
     return (
         <Grid container spacing={8}>
-            {books.map(book => {
+            {books.map((book, key) => {
                 return (
-                    <Grid item md={3} sm={6} xs={12} key={book.id}>
+                    <Grid item md={3} sm={6} xs={12} key={key}>
                         <BookCard updateShelf={props.updateShelf} {...book} />
                     </Grid>
                 );

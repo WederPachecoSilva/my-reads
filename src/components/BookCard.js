@@ -9,6 +9,7 @@ import {
     Button,
 } from 'material-ui';
 import ChangeShelfModal from './ChangeShelfModal/ChangeShelfModal';
+import StarRating from './StarRating';
 
 const styles = {
     container: {
@@ -23,12 +24,17 @@ const styles = {
     arrowIcon: {
         marginLeft: 4,
     },
+    action: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
 };
 
 class BookCard extends React.Component {
     state = {
-        enableComment: false,
         isModalOpen: false,
+        rating: 0,
     };
 
     closeModal = () => {
@@ -39,12 +45,7 @@ class BookCard extends React.Component {
         this.setState({ isModalOpen: true });
     };
 
-    openComment = () => {
-        this.setState({ enableComment: true });
-    };
-
     render() {
-        // @ts-ignore
         const {
             classes,
             imageUrl,
@@ -52,6 +53,7 @@ class BookCard extends React.Component {
             authors,
             book,
             updateShelf,
+            id,
         } = this.props;
 
         return (
@@ -63,35 +65,42 @@ class BookCard extends React.Component {
                         title={title}
                     />
                     <CardContent>
-                        <Typography type="headline" component="h2">
+                        <Typography
+                            align="center"
+                            type="headline"
+                            component="h2"
+                        >
                             {title}
                         </Typography>
                         {authors &&
                             authors.map((author, key) => (
-                                <Typography key={key} component="p">
+                                <Typography
+                                    align="center"
+                                    key={key}
+                                    component="p"
+                                >
                                     {author}
                                 </Typography>
                             ))}
                     </CardContent>
-                    <CardActions>
+                    <CardActions className={classes.action}>
+                        <StarRating id={id} />
                         <Button
-                            onClick={this.openComment}
+                            raised
                             dense
                             color="primary"
+                            onClick={this.openModal}
                         >
-                            Create comment
+                            Choose Shelf
                         </Button>
-                        <Button dense color="primary" onClick={this.openModal}>
-                            Select a Shelf
-                        </Button>
-                        <ChangeShelfModal
-                            isOpen={this.state.isModalOpen}
-                            closeModal={this.closeModal}
-                            book={book}
-                            updateShelf={updateShelf}
-                        />
                     </CardActions>
                 </Card>
+                <ChangeShelfModal
+                    isOpen={this.state.isModalOpen}
+                    closeModal={this.closeModal}
+                    book={book}
+                    updateShelf={updateShelf}
+                />
             </div>
         );
     }

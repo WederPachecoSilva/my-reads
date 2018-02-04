@@ -1,17 +1,20 @@
 import React from 'react';
-import { Modal, Grid, Button, withStyles } from 'material-ui';
+import { Modal, Grid, withStyles } from 'material-ui';
+
 import BookSelection from './BookSelection';
 import { update } from '../../utils/BooksAPI';
 import Error from '../ErrorHandling/Error';
+import Button from './Button';
 
 const styles = {
     modalGrid: {
         margin: 'auto',
-        backgroundColor: '#fff',
+        backgroundColor: '#eee',
         boxShadow: '0 5px 15px #333333',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        border: '4px solid black',
     },
 };
 
@@ -27,16 +30,17 @@ class ChangeDrawerModal extends React.Component {
     };
 
     changeDrawer = async () => {
+        // @ts-ignore
+        const { book, updateShelf, closeModal } = this.props;
         try {
-            // @ts-ignore
-            await update(this.props.book, this.state.shelf);
-            // @ts-ignore
-            if (this.props.updateShelf) {
-                // @ts-ignore
-                this.props.updateShelf();
+            await update(book, this.state.shelf);
+
+            // This prop only comes from /home
+            if (updateShelf) {
+                updateShelf();
             }
-            // @ts-ignore
-            this.props.closeModal();
+
+            closeModal();
         } catch (error) {
             this.setState({ error: true });
             console.log(error);
@@ -45,7 +49,7 @@ class ChangeDrawerModal extends React.Component {
 
     render() {
         // @ts-ignore
-        const { isOpen, classes } = this.props;
+        const { isOpen, classes, closeModal } = this.props;
         if (this.state.error) {
             return <Error />;
         }
@@ -55,14 +59,17 @@ class ChangeDrawerModal extends React.Component {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 open={isOpen}
+                disableAutoFocus
             >
-                <Grid item xs={12} sm={8} md={4} className={classes.modalGrid}>
+                <Grid item xs={9} sm={4} md={2} className={classes.modalGrid}>
                     <BookSelection
                         drawer={this.state.shelf}
                         changeSelectedDrawer={this.changeSelectedDrawer}
                     />
-
-                    <Button onClick={this.changeDrawer}>Change</Button>
+                    <Grid container>
+                        <Button onClick={closeModal}>Cancel</Button>
+                        <Button onClick={this.changeDrawer}>Change</Button>
+                    </Grid>
                 </Grid>
             </Modal>
         );

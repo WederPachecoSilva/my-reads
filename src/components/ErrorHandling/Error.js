@@ -1,3 +1,9 @@
+/**
+ *  Simple error component for catching error not covered
+ *  by error bounderies life cycle.
+ *  In case of production it needs to get a better looking
+ */
+
 import React from 'react';
 
 const style = {
@@ -8,11 +14,6 @@ const style = {
     },
 };
 
-/* 
-    Simple error component for catching error not covered
-    by error bounderies life cycle.
-    In case of production it needs to get a better looking
-*/
 const Error = () => (
     <div style={style.container}>
         <p>Something went wrong!</p>

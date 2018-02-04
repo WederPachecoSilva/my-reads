@@ -1,5 +1,12 @@
 import React from 'react';
-import { Typography, AppBar, Toolbar, withStyles, Button } from 'material-ui';
+import {
+    Typography,
+    AppBar,
+    Toolbar,
+    withStyles,
+    Button,
+    SvgIcon,
+} from 'material-ui';
 import SearchIcon from 'material-ui-icons/Search';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +33,13 @@ const styles = {
     },
 };
 
-const Header = ({ classes, match }) => {
+const HomeIcon = props => (
+    <SvgIcon {...props}>
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+);
+
+const Header = ({ classes, match, path, location }) => {
     const { root, text, icon, bar } = classes;
     return (
         <div className={root}>
@@ -35,10 +48,17 @@ const Header = ({ classes, match }) => {
                     <Typography color="inherit" type="title" className={text}>
                         My-Reads
                     </Typography>
-                    <If condition={match.url === '/' && match.isExact}>
+                    <If condition={location.pathname === '/'}>
                         <Button fab color="inherit" className={icon}>
                             <Link to="/search">
                                 <SearchIcon />
+                            </Link>
+                        </Button>
+                    </If>
+                    <If condition={location.pathname === '/search'}>
+                        <Button fab color="inherit" className={icon}>
+                            <Link to="/">
+                                <HomeIcon />
                             </Link>
                         </Button>
                     </If>

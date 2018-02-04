@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { getAll } from '../utils/BooksAPI';
 import BookCardList from './BookCardList';
+import If from './helpers/If';
 
 class BookCardListByShelf extends React.Component {
     state = { wantToRead: [], read: [], currentlyReading: [] };
@@ -48,25 +50,31 @@ class BookCardListByShelf extends React.Component {
     }
 
     render() {
+        const { read, currentlyReading, wantToRead } = this.state;
         return (
-            <div>
-                <h3>read</h3>
-                <BookCardList
-                    updateShelf={this.getBooksAndSplitByShelf}
-                    books={this.state.read}
-                />
-                <h3>currently reading</h3>
-                <BookCardList
-                    updateShelf={this.getBooksAndSplitByShelf}
-                    books={this.state.currentlyReading}
-                />
-
-                <h3>want to read</h3>
-                <BookCardList
-                    updateShelf={this.getBooksAndSplitByShelf}
-                    books={this.state.wantToRead}
-                />
-            </div>
+            <React.Fragment>
+                <If condition={wantToRead.length > 0}>
+                    <h1>Want to Read</h1>
+                    <BookCardList
+                        updateShelf={this.getBooksAndSplitByShelf}
+                        books={wantToRead}
+                    />
+                </If>
+                <If condition={currentlyReading.length > 0}>
+                    <h1>Currently Reading</h1>
+                    <BookCardList
+                        updateShelf={this.getBooksAndSplitByShelf}
+                        books={currentlyReading}
+                    />
+                </If>
+                <If condition={read.length > 0}>
+                    <h1>Read</h1>
+                    <BookCardList
+                        updateShelf={this.getBooksAndSplitByShelf}
+                        books={read}
+                    />
+                </If>
+            </React.Fragment>
         );
     }
 }
