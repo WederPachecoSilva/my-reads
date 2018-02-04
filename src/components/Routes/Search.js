@@ -7,6 +7,7 @@ import { search } from '../../utils/BooksAPI';
 import BookCardList from './../BookCardList';
 import If from './../helpers/If';
 import Error from './../ErrorHandling/Error';
+import withErrorBoundary from '../ErrorHandling/withErrorBoundary';
 
 const styles = {
     searchBar: {
@@ -27,17 +28,26 @@ class Search extends Component {
         hasError: false,
     };
 
-    doDebouncedSearch = debounce(async term => {
+    debouncedSearch = debounce(async term => {
         let books = [];
         try {
             if (term.length === 0) {
-                this.setState({ books: [] });
-                return;
+                return this.setState({ books: [] });
             }
 
             const result = await search(term);
+
+            if (result.error === 'empty query') {
+                return this.setState({ books: [] });
+            }
+
             books = result.map(book => {
                 const { title, authors, id, imageLinks } = book;
+
+                if (!imageLinks) {
+                    return { title, authors, id, book };
+                }
+
                 return {
                     title,
                     authors,
@@ -46,9 +56,8 @@ class Search extends Component {
                     book,
                 };
             });
-            if (books.length > 0) {
-                this.setState({ books });
-            }
+
+            this.setState({ books });
         } catch (error) {
             this.setState({ books: [], hasError: true });
         }
@@ -56,7 +65,7 @@ class Search extends Component {
 
     handleSearch = e => {
         const { value } = e.target;
-        this.doDebouncedSearch(value);
+        this.debouncedSearch(value);
     };
 
     render() {
@@ -90,4 +99,4 @@ class Search extends Component {
 }
 
 // @ts-ignore
-export default withStyles(styles)(Search);
+export default withErrorBoundary(withStyles(styles)(Search));
