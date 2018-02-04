@@ -4,6 +4,15 @@ import { getAll } from '../../utils/BooksAPI';
 import BookCardList from './BookCardList';
 import If from '.././Helpers/If';
 
+const styles = {
+    title: {
+        color: 'blue',
+        textAlign: 'center',
+        padding: '0.75em',
+        border: '1px solid blue',
+    },
+};
+
 class BookCardListByShelf extends React.Component {
     state = { wantToRead: [], read: [], currentlyReading: [] };
 
@@ -54,21 +63,21 @@ class BookCardListByShelf extends React.Component {
         return (
             <React.Fragment>
                 <If condition={wantToRead.length > 0}>
-                    <h1>Want to Read</h1>
+                    <h1 style={styles.title}>Want to Read</h1>
                     <BookCardList
                         updateShelf={this.getBooksAndSplitByShelf}
                         books={wantToRead}
                     />
                 </If>
                 <If condition={currentlyReading.length > 0}>
-                    <h1>Currently Reading</h1>
+                    <h1 style={styles.title}>Currently Reading</h1>
                     <BookCardList
                         updateShelf={this.getBooksAndSplitByShelf}
                         books={currentlyReading}
                     />
                 </If>
                 <If condition={read.length > 0}>
-                    <h1>Read</h1>
+                    <h1 style={styles.title}>Read</h1>
                     <BookCardList
                         updateShelf={this.getBooksAndSplitByShelf}
                         books={read}
