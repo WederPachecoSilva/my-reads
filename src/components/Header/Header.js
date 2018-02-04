@@ -9,6 +9,7 @@ import {
 } from 'material-ui';
 import SearchIcon from 'material-ui-icons/Search';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import If from './../Helpers/If';
 import { withRouter } from 'react-router';
@@ -39,7 +40,7 @@ const HomeIcon = props => (
     </SvgIcon>
 );
 
-const Header = ({ classes, match, path, location }) => {
+const Header = ({ classes, location }) => {
     const { root, text, icon, bar } = classes;
     return (
         <div className={root}>
@@ -66,6 +67,18 @@ const Header = ({ classes, match, path, location }) => {
             </AppBar>
         </div>
     );
+};
+
+Header.propTypes = {
+    classes: PropTypes.shape({
+        root: PropTypes.string.isRequired,
+        bar: PropTypes.string.isRequired,
+        icon: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+    }),
+    location: PropTypes.shape({
+        pathname: PropTypes.string.isRequired,
+    }),
 };
 
 // @ts-ignore

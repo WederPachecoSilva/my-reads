@@ -1,6 +1,8 @@
 import React from 'react';
-import BookCard from '../BookCard/BookCard';
 import { Grid } from 'material-ui';
+import PropTypes from 'prop-types';
+
+import BookCard from '../BookCard/BookCard';
 
 const BookCardList = props => {
     const { books } = props;
@@ -15,6 +17,10 @@ const BookCardList = props => {
             })}
         </Grid>
     );
+};
+
+BookCard.propTypes = {
+    books: PropTypes.array,
 };
 
 export default BookCardList;

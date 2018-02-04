@@ -1,7 +1,12 @@
 import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
+import PropTypes from 'prop-types';
 
 class StarRating extends React.Component {
+    static propTypes = {
+        id: PropTypes.string.isRequired,
+    };
+
     state = {
         rating: 1,
     };

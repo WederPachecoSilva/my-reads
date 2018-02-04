@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Grid, withStyles } from 'material-ui';
+import PropTypes from 'prop-types';
 
 import BookSelection from './BookSelection';
 import { update } from '../../utils/BooksAPI';
@@ -19,6 +20,18 @@ const styles = {
 };
 
 class ChangeDrawerModal extends React.Component {
+    static propTypes = {
+        book: PropTypes.shape({
+            shelf: PropTypes.string,
+        }),
+        updateShelf: PropTypes.func,
+        closeModal: PropTypes.func.isRequired,
+        isOpen: PropTypes.bool.isRequired,
+        classes: PropTypes.shape({
+            modalGrid: PropTypes.string.isRequired,
+        }),
+    };
+
     state = {
         // @ts-ignore
         shelf: this.props.book.shelf || 'none',

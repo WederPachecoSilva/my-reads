@@ -7,6 +7,7 @@ import {
     Radio,
     RadioGroup,
 } from 'material-ui';
+import PropTypes from 'prop-types';
 
 const styles = theme => ({
     root: {
@@ -29,7 +30,7 @@ const radioOptions = [
     { label: 'Read', value: 'read' },
 ];
 
-const RadioButtonsGroup = props => {
+const BookSelection = props => {
     const { classes, changeSelectedDrawer, drawer } = props;
 
     return (
@@ -56,5 +57,15 @@ const RadioButtonsGroup = props => {
     );
 };
 
+BookSelection.propTypes = {
+    classes: PropTypes.shape({
+        root: PropTypes.string.isRequired,
+        formControl: PropTypes.string.isRequired,
+        group: PropTypes.string.isRequired,
+    }),
+    changeSelectedDrawer: PropTypes.func.isRequired,
+    drawer: PropTypes.string.isRequired,
+};
+
 // @ts-ignore
-export default withStyles(styles)(RadioButtonsGroup);
+export default withStyles(styles)(BookSelection);

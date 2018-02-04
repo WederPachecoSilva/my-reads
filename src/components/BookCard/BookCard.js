@@ -8,6 +8,8 @@ import {
     CardActions,
     Button,
 } from 'material-ui';
+import PropTypes from 'prop-types';
+
 import ChangeShelfModal from '.././ChangeShelfModal/ChangeShelfModal';
 import StarRating from './StarRating';
 
@@ -32,6 +34,25 @@ const styles = {
 };
 
 class BookCard extends React.Component {
+    static propTypes = {
+        classes: PropTypes.shape({
+            container: PropTypes.string.isRequired,
+            card: PropTypes.string.isRequired,
+            media: PropTypes.string.isRequired,
+            arrowIcon: PropTypes.string.isRequired,
+        }),
+        imageUrl: PropTypes.string,
+        title: PropTypes.string.isRequired,
+        authors: PropTypes.array,
+        updateShelf: PropTypes.func,
+        book: PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            imageUrl: PropTypes.string,
+            title: PropTypes.string.isRequired,
+            authors: PropTypes.array,
+        }),
+    };
+
     state = {
         isModalOpen: false,
         rating: 0,
@@ -61,6 +82,7 @@ class BookCard extends React.Component {
                 <Card className={classes.card}>
                     <CardMedia
                         className={classes.media}
+                        src="../../../public/images/not-found.png"
                         image={imageUrl}
                         title={title}
                     />
