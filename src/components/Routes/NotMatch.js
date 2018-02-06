@@ -9,7 +9,7 @@ const style = {
 };
 
 /**
- *  This component will render with the user tries to search for
+ *  This component will render when the user tries to search for
  *  an URL that doesn't match any valid one.
  *  This is a simple 404 handler.
  *  In case of production it needs to get a better looking
