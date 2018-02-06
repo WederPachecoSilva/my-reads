@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 
 import ChangeShelfModal from '.././ChangeShelfModal/ChangeShelfModal';
 import StarRating from './StarRating';
+import If from '../Helpers/If';
 
 const styles = {
     container: {
@@ -117,12 +118,14 @@ class BookCard extends React.Component {
                         </Button>
                     </CardActions>
                 </Card>
-                <ChangeShelfModal
-                    isOpen={this.state.isModalOpen}
-                    closeModal={this.closeModal}
-                    book={book}
-                    updateShelf={updateShelf}
-                />
+                <If condition={this.state.isModalOpen}>
+                    <ChangeShelfModal
+                        isOpen={this.state.isModalOpen}
+                        closeModal={this.closeModal}
+                        book={book}
+                        updateShelf={updateShelf}
+                    />
+                </If>
             </div>
         );
     }

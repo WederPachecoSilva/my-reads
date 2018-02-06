@@ -7,19 +7,16 @@ import Header from './Header/Header';
 
 const LoadableHome = Loadable({
     loader: () => import('./Routes/Home'),
-    // @ts-ignore
     loading: () => <Loading />,
 });
 
 const LoadableSearch = Loadable({
     loader: () => import('./Routes/Search'),
-    // @ts-ignore
     loading: () => <Loading />,
 });
 
 const LoadableNotMatch = Loadable({
     loader: () => import('./Routes/NotMatch'),
-    // @ts-ignore
     loading: () => <Loading />,
 });
 

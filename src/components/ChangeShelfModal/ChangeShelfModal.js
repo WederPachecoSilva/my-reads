@@ -3,7 +3,7 @@ import { Modal, Grid, withStyles } from 'material-ui';
 import PropTypes from 'prop-types';
 
 import BookSelection from './BookSelection';
-import { update } from '../../utils/BooksAPI';
+import { update, get } from '../../utils/BooksAPI';
 import Error from '../ErrorHandling/Error';
 import Button from './Button';
 
@@ -33,9 +33,20 @@ class ChangeDrawerModal extends React.Component {
     };
 
     state = {
-        shelf: this.props.book.shelf || 'none',
+        shelf: '',
         error: false,
     };
+
+    async componentDidMount() {
+        try {
+            const book = await get(this.props.book.id);
+            if (book.shelf) {
+                this.setState({ shelf: book.shelf });
+            }
+        } catch (error) {
+            this.setState({ error: true });
+        }
+    }
 
     changeSelectedShelf = event => {
         this.setState({ shelf: event.target.value });
@@ -78,7 +89,7 @@ class ChangeDrawerModal extends React.Component {
             >
                 <Grid item xs={9} sm={4} md={2} className={classes.modalGrid}>
                     <BookSelection
-                        drawer={shelf}
+                        shelf={shelf}
                         changeSelectedShelf={this.changeSelectedShelf}
                     />
                     <Grid container justify="space-around">

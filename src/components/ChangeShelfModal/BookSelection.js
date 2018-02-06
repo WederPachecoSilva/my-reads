@@ -31,7 +31,7 @@ const radioOptions = [
 ];
 
 const BookSelection = props => {
-    const { classes, changeSelectedShelf, drawer } = props;
+    const { classes, changeSelectedShelf, shelf } = props;
 
     return (
         <div className={classes.root}>
@@ -41,7 +41,7 @@ const BookSelection = props => {
                     aria-label="drawer"
                     name="drawer"
                     className={classes.group}
-                    value={drawer}
+                    value={shelf}
                     onChange={changeSelectedShelf}
                 >
                     {radioOptions.map((option, key) => (
@@ -64,7 +64,7 @@ BookSelection.propTypes = {
         group: PropTypes.string.isRequired,
     }),
     changeSelectedDrawer: PropTypes.func,
-    drawer: PropTypes.string.isRequired,
+    shelf: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(BookSelection);

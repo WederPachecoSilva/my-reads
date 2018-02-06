@@ -65,7 +65,6 @@ class Search extends Component {
                     book,
                 };
             });
-
             this.setState({ books });
         } catch (error) {
             this.setState({ books: [], hasError: true });
