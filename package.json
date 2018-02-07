@@ -2,7 +2,8 @@
     "name": "my-reads",
     "version": "0.1.0",
     "author": "Wéder Pacheco da Silva",
-    "private": true,
+    "private": false,
+    "license": "ISC"
     "dependencies": {
         "lodash": "^4.17.4",
         "material-ui": "^1.0.0-beta.26",
