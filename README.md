@@ -12,15 +12,15 @@ In order to install all the packages you need to run MyReads app you need to hav
 After you make sure that you have node.js installed you will need to install all the dependency packages.
 To install all the packages you need and run this application follow these steps:
 
-  __$ npm install__ 
+* `$ npm install` 
   
-  __$ npm start__
+*  `$ npm start`
 
 or: 
 
-__$ yarn install__
+*  `$ yarn install`
 
-__$ yarn start__
+*  `$ yarn start`
 
 It should open your browser automatically but in case it doesn't, go to your browser
 of choice and search for the 'localhost:3000' URL.
