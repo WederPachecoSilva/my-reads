@@ -30,11 +30,10 @@ class Search extends Component {
 
     /**
      * This method returns a debounced function that
-     * when invoked will only execute after 300 miliseconds
-     * of its call.
+     * will only execute after 300 miliseconds after invokation.
      * The debounced function receives a term to be searched,
      * do some checks and treats if there is something wrong.
-     * If everything is ok it search for all books and then store
+     * If everything is ok it searchs for all books and then stores
      * them in this.state.books
      */
     debouncedSearch = debounce(async term => {
@@ -52,18 +51,26 @@ class Search extends Component {
 
             books = result.map(book => {
                 const { title, authors, id, imageLinks } = book;
+                return !imageLinks
+                    ? { title, authors, id, book }
+                    : {
+                          title,
+                          authors,
+                          id,
+                          imageUrl: imageLinks.thumbnail,
+                          book,
+                      };
+                // if (!imageLinks) {
+                //     return { title, authors, id, book };
+                // }
 
-                if (!imageLinks) {
-                    return { title, authors, id, book };
-                }
-
-                return {
-                    title,
-                    authors,
-                    id,
-                    imageUrl: imageLinks.thumbnail,
-                    book,
-                };
+                // return {
+                //     title,
+                //     authors,
+                //     id,
+                //     imageUrl: imageLinks.thumbnail,
+                //     book,
+                // };
             });
             this.setState({ books });
         } catch (error) {

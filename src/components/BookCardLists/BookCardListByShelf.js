@@ -17,7 +17,7 @@ class BookCardListByShelf extends React.Component {
     state = { wantToRead: [], read: [], currentlyReading: [] };
 
     /**
-     * It gets a list of all books that has a specific shelf,
+     * It gets a list of all books that have a specific shelf,
      * loops through it and split into three different
      * lists (wantToRead, read and currentlyReading).
      * Then it stores all three lists in this.state
